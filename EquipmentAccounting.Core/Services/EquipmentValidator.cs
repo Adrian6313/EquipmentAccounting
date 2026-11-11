@@ -15,4 +15,11 @@ public static class EquipmentValidator
         if (equipment.PurchaseDate.Date > DateTime.Today) throw new ArgumentException("Дата приобретения не может быть в будущем.", nameof(equipment));
         if (equipment.LastInspectionDate is { } inspection && inspection.Date > DateTime.Today) throw new ArgumentException("Дата осмотра не может быть в будущем.", nameof(equipment));
     }
+
+    public static bool IsInspectionDue(Equipment equipment, int intervalMonths = 12)
+    {
+        ArgumentNullException.ThrowIfNull(equipment);
+        if (equipment.LastInspectionDate is not { } lastDate) return true;
+        return lastDate.Date.AddMonths(intervalMonths) <= DateTime.Today;
+    }
 }
