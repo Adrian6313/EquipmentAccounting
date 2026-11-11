@@ -11,6 +11,7 @@ public sealed class Equipment
     public string Department { get; set; } = "";
     public DateTime? LastInspectionDate { get; set; }
     public string RepairSummary { get; set; } = "";
+    public string DisplayTitle => $"{Name} ({InventoryNumber}) — {Department}";
 }
 
 public sealed record Repair(int Id, int EquipmentId, DateTime RepairDate, string Description, decimal Cost);
