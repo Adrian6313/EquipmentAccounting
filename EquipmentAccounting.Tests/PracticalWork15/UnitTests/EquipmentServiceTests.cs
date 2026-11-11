@@ -72,6 +72,14 @@ public sealed class EquipmentServiceTests : IDisposable
         Assert.All(itItems, e => Assert.Equal("ИТ", e.Department));
     }
 
+    [Fact] public void GetDepartmentSummaries_ReturnsGroupedTotals()
+    {
+        var service = Service;
+        var summaries = service.GetDepartmentSummaries();
+        Assert.NotEmpty(summaries);
+        Assert.Equal(service.GetTotalCost(), summaries.Sum(s => s.TotalCost));
+    }
+
     [Fact] public void InvalidEquipment_IsRejected()
     {
         var service = Service; Assert.Throws<ArgumentException>(() => service.Add(NewEquipment(" "))); var negative = NewEquipment("TEST-NEG"); negative.Cost = -1; Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(negative)); var future = NewEquipment("TEST-FUTURE"); future.PurchaseDate = DateTime.Today.AddDays(1); Assert.Throws<ArgumentException>(() => service.Add(future));
