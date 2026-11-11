@@ -17,3 +17,4 @@ public sealed record Repair(int Id, int EquipmentId, DateTime RepairDate, string
 public sealed record Inspection(int Id, int EquipmentId, DateTime InspectionDate, string Result, string Inspector);
 public sealed record EquipmentMovement(int Id, int EquipmentId, string FromDepartment, string ToDepartment, DateTime MovedAt);
 public sealed record InventoryRow(int Id, string Name, string InventoryNumber, string Manufacturer, DateTime PurchaseDate, decimal Cost, string Department, DateTime? LastInspectionDate);
+public sealed record DepartmentSummary(string Department, int Count, decimal TotalCost);

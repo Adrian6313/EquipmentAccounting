@@ -10,6 +10,7 @@ public sealed class EquipmentService(EquipmentRepository repository)
     public IReadOnlyList<Equipment> Search(string query) => string.IsNullOrWhiteSpace(query) ? GetAll() : repository.Search(query);
     public IReadOnlyList<Equipment> GetByDepartment(string department) => string.IsNullOrWhiteSpace(department) ? GetAll() : GetAll().Where(e => string.Equals(e.Department, department.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
     public decimal GetTotalCost() => repository.GetTotalCost();
+    public IReadOnlyList<DepartmentSummary> GetDepartmentSummaries() => GetAll().GroupBy(e => e.Department, StringComparer.OrdinalIgnoreCase).OrderBy(g => g.Key, StringComparer.OrdinalIgnoreCase).Select(g => new DepartmentSummary(g.Key, g.Count(), g.Sum(x => x.Cost))).ToList();
     public IReadOnlyList<InventoryRow> GetInventory() => repository.GetInventory();
     public IReadOnlyList<Repair> GetRepairs(int id) => repository.GetRepairs(id);
     public IReadOnlyList<Inspection> GetInspections(int id) => repository.GetInspections(id);
