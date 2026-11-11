@@ -96,6 +96,12 @@ public partial class MainWindow : Window
             Run(() => _service.AddInspection(item.Id, DateTime.Today, result, inspector));
     }
 
+    private void Optimization_Click(object sender, RoutedEventArgs e)
+    {
+        new OptimizationWindow { Owner = this }.ShowDialog();
+        StatusText.Text = "Открыто окно оптимизации алгоритмов поиска";
+    }
+
     private void Inventory_Click(object sender, RoutedEventArgs e)
     {
         new InventoryWindow(_service.GetInventory()) { Owner = this }.ShowDialog();

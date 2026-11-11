@@ -37,6 +37,8 @@
                     <MenuItem Header="Осмотры выбранного оборудования" Click="Inspection_Click"/>
                     <MenuItem Header="Перемещения выбранного оборудования" Click="Movements_Click"/>
                     <MenuItem Header="Инвентаризационная ведомость" Click="Inventory_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Оптимизация поиска…" Click="Optimization_Click"/>
                 </MenuItem>
                 <MenuItem Header="Справка" Click="About_Click"/>
             </Menu>
