@@ -102,6 +102,12 @@ public partial class MainWindow : Window
         StatusText.Text = "Открыто окно оптимизации алгоритмов поиска";
     }
 
+    private void Diagnostics_Click(object sender, RoutedEventArgs e)
+    {
+        new Views.DiagnosticsWindow { Owner = this }.ShowDialog();
+        StatusText.Text = "Открыто окно диагностики и отладки (ПР №10-11, Вариант 4)";
+    }
+
     private void Inventory_Click(object sender, RoutedEventArgs e)
     {
         new InventoryWindow(_service.GetInventory()) { Owner = this }.ShowDialog();

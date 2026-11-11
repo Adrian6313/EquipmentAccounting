@@ -39,6 +39,8 @@
                     <MenuItem Header="Инвентаризационная ведомость" Click="Inventory_Click"/>
                     <Separator/>
                     <MenuItem Header="Оптимизация поиска…" Click="Optimization_Click"/>
+                    <Separator/>
+                    <MenuItem Header="Отладка и исключения (ПР №10–11, Вар. 4)…" Click="Diagnostics_Click"/>
                 </MenuItem>
                 <MenuItem Header="Справка" Click="About_Click"/>
             </Menu>
@@ -50,6 +52,7 @@
                     <Separator/>
                     <Button Content="Переместить" Click="Move_Click" Background="#466B91"/>
                     <Button Content="Ведомость" Click="Inventory_Click" Background="#18705A"/>
+                    <Button Content="Отладка (Вар. 4)" Click="Diagnostics_Click" Background="#245C9A"/>
                 </ToolBar>
             </ToolBarTray>
             <DockPanel Margin="20,12,20,8">
