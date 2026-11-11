@@ -8,6 +8,7 @@ public sealed class EquipmentService(EquipmentRepository repository)
 {
     public IReadOnlyList<Equipment> GetAll() => repository.GetAll();
     public IReadOnlyList<Equipment> Search(string query) => string.IsNullOrWhiteSpace(query) ? GetAll() : repository.Search(query);
+    public IReadOnlyList<Equipment> GetByDepartment(string department) => string.IsNullOrWhiteSpace(department) ? GetAll() : GetAll().Where(e => string.Equals(e.Department, department.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
     public decimal GetTotalCost() => repository.GetTotalCost();
     public IReadOnlyList<InventoryRow> GetInventory() => repository.GetInventory();
     public IReadOnlyList<Repair> GetRepairs(int id) => repository.GetRepairs(id);

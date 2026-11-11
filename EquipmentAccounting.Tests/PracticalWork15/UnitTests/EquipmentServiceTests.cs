@@ -63,6 +63,15 @@ public sealed class EquipmentServiceTests : IDisposable
         var service = Service; var item = service.Add(NewEquipment()); Assert.Contains(service.GetInventory(), row => row.Id == item.Id && row.InventoryNumber == "TEST-100");
     }
 
+    [Fact] public void GetByDepartment_FiltersEquipmentByDepartment()
+    {
+        var service = Service;
+        var item = service.Add(NewEquipment("TEST-DEPT-FILTER"));
+        var itItems = service.GetByDepartment("ИТ");
+        Assert.Contains(itItems, e => e.Id == item.Id);
+        Assert.All(itItems, e => Assert.Equal("ИТ", e.Department));
+    }
+
     [Fact] public void InvalidEquipment_IsRejected()
     {
         var service = Service; Assert.Throws<ArgumentException>(() => service.Add(NewEquipment(" "))); var negative = NewEquipment("TEST-NEG"); negative.Cost = -1; Assert.Throws<ArgumentOutOfRangeException>(() => service.Add(negative)); var future = NewEquipment("TEST-FUTURE"); future.PurchaseDate = DateTime.Today.AddDays(1); Assert.Throws<ArgumentException>(() => service.Add(future));
